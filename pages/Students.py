@@ -57,19 +57,7 @@ if students:
 
     df = pd.DataFrame(students)
 
-    img = JsCode("""
-    class ImgRenderer{
-        init(params){
-            this.eGui=document.createElement('img');
-            this.eGui.src=params.value;
-            this.eGui.width=60;
-            this.eGui.height=60;
-        }
-        getGui(){
-            return this.eGui;
-        }
-    }
-    """)
+
 
     gb = GridOptionsBuilder.from_dataframe(df)
 
