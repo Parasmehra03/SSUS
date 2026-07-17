@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import base64
 
-
 from database.mongodb import student_collection
 
 st.title("📋 Student List")
@@ -46,18 +45,26 @@ if students:
         student["_id"] = str(student["_id"])
 
         if student.get("photo"):
-            img_bytes = bytes(student["photo"])
-            student["photo"] = (
-                "data:image/jpeg;base64, "
-                + base64.b64encode(img_bytes).decode("uff-8")
-            )
+            student["photo"] = "data:image/Jpeg;base64," + base64.b64decode(student["photo"]).decode("latin")
         else:
             student["photo"] = ""
     
 
     df = pd.DataFrame(students)
 
-
+    img = JsCode("""
+    class ImgRenderer{
+        init(params){
+            this.eGui=document.createElement('img');
+            this.eGui.src=params.value;
+            this.eGui.width=60;
+            this.eGui.height=60;
+        }
+        getGui(){
+            return this.eGui;
+        }
+    }
+    """)
 
     gb = GridOptionsBuilder.from_dataframe(df)
 
