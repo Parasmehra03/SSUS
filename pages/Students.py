@@ -40,7 +40,7 @@ students = list(
 
 if students:
 
-    for student in students:
+    for student in student:
 
         student["_id"] = str(student["_id"])
 
@@ -50,7 +50,7 @@ if students:
             student["photo"] = ""
     
 
-    df = pd.DataFrame(students)
+    df = pd.DataFrame(student)
 
     img = JsCode("""
     class ImgRenderer{
