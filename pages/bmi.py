@@ -1,7 +1,7 @@
 import streamlit as st
 
 from database.mongodb import (
-    students_collection,
+    student_collection,
     bmi_collection
 )
 
@@ -9,7 +9,7 @@ st.title("BMI Calculator")
 
 # Load Students
 students = list(
-    students_collection.find()
+    student_collection.find()
 )
 
 if not students:
