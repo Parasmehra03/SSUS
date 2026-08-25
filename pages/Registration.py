@@ -1,7 +1,12 @@
 import streamlit as st
-
+from pymongo import MongoClient
 
 st.title("Student Registration")
+
+# MongoDB
+client = MongoClient(st.secrets["MONGO_URI"])
+db = client["ssus"]
+student_collection = db["students"]
 
 first_name = st.text_input("First Name")
 last_name = st.text_input("Last Name")
