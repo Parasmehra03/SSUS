@@ -1,5 +1,5 @@
 import streamlit as st
-from database import student_collection
+
 
 st.title("Student Registration")
 
