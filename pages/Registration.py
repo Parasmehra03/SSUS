@@ -1,5 +1,7 @@
 import streamlit as st
 
+from database.mongodb import student_collection
+
 st.title("Student Registration")
 
 first_name = st.text_input("First Name")
@@ -13,14 +15,17 @@ course = st.text_input("Course")
 
 if st.button("Register Student"):
 
-    if first_name and last_name and email and course:
+    if not first_name or not last_name or not email or not course:
 
-        st.success("Student Registered Successfully")
-
-        st.write("First Name:", first_name)
-        st.write("Last Name:", last_name)
-        st.write("Email:", email)
-        st.write("Course:", course)
+        st.error("Please fill all fields")
 
     else:
-        st.error("Please fill all fields")
+
+        student_collection.insert_one({
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "course": course
+        })
+
+        st.success("Student Registered Successfully")
