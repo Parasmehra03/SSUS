@@ -12,6 +12,18 @@ email = st.text_input("Email")
 
 course = st.text_input("Course")
 
+photo = st.file_uploader(
+    "Upload Student Photo",
+    type=["jpg", "jpeg", "png"]
+)
+
+if photo is not None:
+    st.image(
+        photo,
+        width=150,
+        caption="Student Photo"
+    )
+
 
 if st.button("Register Student"):
 
@@ -19,13 +31,20 @@ if st.button("Register Student"):
 
         st.error("Please fill all fields")
 
+    elif photo is None:
+
+        st.error("Please upload student photo")
+
     else:
+
+        photo_data = photo.read()
 
         student_collection.insert_one({
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
-            "course": course
+            "course": course,
+            "photo": photo_data
         })
 
         st.success("Student Registered Successfully")
