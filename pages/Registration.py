@@ -13,7 +13,7 @@ course = st.text_input("Course")
 
 if st.button("Register Student"):
 
-    student_collection.insert_one({
+    students_collection.insert_one({
 
         "first_name": first_name,
 
