@@ -13,16 +13,14 @@ course = st.text_input("Course")
 
 if st.button("Register Student"):
 
-    students_collection.insert_one({
+    if first_name and last_name and email and course:
 
-        "first_name": first_name,
+        st.success("Student Registered Successfully")
 
-        "last_name": last_name,
+        st.write("First Name:", first_name)
+        st.write("Last Name:", last_name)
+        st.write("Email:", email)
+        st.write("Course:", course)
 
-        "email": email,
-
-        "course": course
-
-    })
-
-    st.success("Student Registered Successfully")
+    else:
+        st.error("Please fill all fields")
